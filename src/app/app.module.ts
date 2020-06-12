@@ -8,13 +8,15 @@ import { ResgistrationComponent } from './resgistration/resgistration.component'
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginsuccessComponent } from './loginsuccess/loginsuccess.component';
+import { TransciverComponent } from './transciver/transciver.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ResgistrationComponent,
-    LoginsuccessComponent
+    LoginsuccessComponent,
+    TransciverComponent
   ],
   imports: [
     BrowserModule,

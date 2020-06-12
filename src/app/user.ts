@@ -3,6 +3,7 @@ export class User {
     emailId:String;
     userName:String;
     password:String;
+    confirmPassword:String;
     constructor(){
      }
 }

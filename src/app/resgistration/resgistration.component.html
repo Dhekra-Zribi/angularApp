@@ -33,7 +33,7 @@
 
       <div class="form-group">
         <label for="pwd">Confirm password:</label>
-        <input type="password" class="form-control" placeholder="Enter confirm password" name="pwd" #pwd="ngModel" [(ngModel)]="user.password" required 
+        <input type="password" class="form-control" placeholder="Enter confirm password" name="pwd" #pwd="ngModel" [(ngModel)]="user.confirmPassword" required 
         [class.is-invalid]="pwd.invalid && pwd.touched"
         >
         <small class="text-danger" [class.d-none]="(pwd.value == password.value) || pwd.untouched">password and confirm password must be the same!</small>
