@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { RegistrationService } from '../registration.service';
 import { User } from '../user';
-import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,16 +13,29 @@ export class LoginComponent implements OnInit {
 
   user= new User();
   msg=''
-  constructor(private _service : RegistrationService, private _route : Router) { }
+  loginForm: FormGroup;  
+  message: string;  
+  returnUrl: string; 
+
+  constructor(private _service : RegistrationService, 
+      private _route : Router) { }
 
   ngOnInit(): void {
+    /*this.loginForm = this.formBuilder.group({  
+      emailId: ['', Validators.required],  
+      password: ['', Validators.required]  
+   });  */
+  this.returnUrl = '/loginsuccess';  
+  this._service.logout();
   }
 
   loginUser(){
     this._service.loginUserFromRemote(this.user).subscribe(
       data => {
         console.log("response received");
-        this._route.navigate(['/loginsuccess']);
+        localStorage.setItem('isLoggedIn', "true");  
+        localStorage.setItem('token', this.user.emailId.toString());
+        this._route.navigate([this.returnUrl]);
       },
       error => {
         console.log("exception occured");

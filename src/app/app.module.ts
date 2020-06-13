@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginsuccessComponent } from './loginsuccess/loginsuccess.component';
 import { TransciverComponent } from './transciver/transciver.component';
+import { AuthGuard } from './guards/auth.guard'; 
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { TransciverComponent } from './transciver/transciver.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
