@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
     this._service.loginUserFromRemote(this.user).subscribe(
       data => {
         console.log("response received");
-        localStorage.setItem('isLoggedIn', "true");  
-        localStorage.setItem('token', this.user.emailId.toString());
+        //localStorage.setItem('isLoggedIn', "true");  
+        //localStorage.setItem('token', this.user.emailId.toString());
         this._route.navigate([this.returnUrl]);
       },
       error => {
