@@ -27,6 +27,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { SmsListComponent } from './sms-list/sms-list.component';
 import { ToastrService } from 'ngx-toastr';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +38,10 @@ import { ToastrService } from 'ngx-toastr';
     ResgistrationComponent,
     LoginsuccessComponent,
     TransciverComponent,
-    SmsListComponent
+    SmsListComponent,
+    HeaderComponent,
+    FooterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
