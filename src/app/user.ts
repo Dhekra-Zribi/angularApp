@@ -1,9 +1,9 @@
 export class User {
     id:number;
-    emailId:String;
-    userName:String;
-    password:String;
-    confirmPassword:String;
+    emailId:string;
+    userName:string;
+    password:string;
+    confirmPassword:string;
     constructor(){
      }
 }
