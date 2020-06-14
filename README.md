@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `npm update`
 Run `ng serve -o` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Spring boot application
+## Spring boot application (Backend)
 
 https://github.com/Dhekra-Zribi/PFE2020
 
