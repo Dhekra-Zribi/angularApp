@@ -1,8 +1,8 @@
 export class Sms {
     id:number;
-    shortMessage:String;
-    sourceAddr:String;
-    destAddr:String;
+    shortMessage:string;
+    sourceAddr:string;
+    destAddr:string;
     constructor(){
      }
 }

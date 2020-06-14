@@ -11,7 +11,9 @@ import { TranscieverService } from '../transciever.service';
 export class TransciverComponent implements OnInit {
 
   sms= new Sms();
-  constructor(private _service : TranscieverService, private _route : Router) { }
+  constructor(private _service : TranscieverService, private _route : Router
+    //,private sendSmsform : NgForm
+    ) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +23,7 @@ export class TransciverComponent implements OnInit {
     data => {
       console.log("Message send");
      //this._route.navigate(['/sms']);
+     //this.sendSmsform.reset();
     },
     error => {
       console.log("exception occured");
