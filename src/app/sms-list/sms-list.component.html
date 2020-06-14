@@ -1,0 +1,12 @@
+<table class="table">
+    <th>Message</th>
+    <th>Source Address</th>
+    <th>Destination Address</th>
+    <th>Action</th>
+    <tr *ngFor="let sms of service.list">
+      <td (click)="populateForm(sms)">{{sms.shortMessage}}</td>
+      <td (click)="populateForm(sms)">{{sms.sourceAddr}}</td>
+      <td (click)="populateForm(sms)">{{sms.destAddr}}</td>
+      <td><button (click)="onDelete(sms.id)" class="btn btn-sm btn-outline-danger">X</button></td>
+    </tr>
+  </table>
