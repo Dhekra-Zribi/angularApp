@@ -21,10 +21,6 @@ export class LoginComponent implements OnInit {
       private _route : Router) { }
 
   ngOnInit(): void {
-    /*this.loginForm = this.formBuilder.group({  
-      emailId: ['', Validators.required],  
-      password: ['', Validators.required]  
-   });  */
   this.returnUrl = '/loginsuccess';  
   this._service.logout();
   }
@@ -33,8 +29,6 @@ export class LoginComponent implements OnInit {
     this._service.loginUserFromRemote(this.user).subscribe(
       data => {
         console.log("response received");
-        //localStorage.setItem('isLoggedIn', "true");  
-        //localStorage.setItem('token', this.user.emailId.toString());
         this._route.navigate([this.returnUrl]);
       },
       error => {

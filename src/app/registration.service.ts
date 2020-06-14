@@ -8,13 +8,14 @@ import { HttpClient } from "@angular/common/http";
 })
 export class RegistrationService {
 
-  //userName : string
+  userName : string
   constructor(private _http : HttpClient) { }
 
   public loginUserFromRemote(user : User):Observable<any>{
-   // this.userName = user.userName.toString();
+    this.userName = user.userName;
     localStorage.setItem('isLoggedIn', "true");  
-    localStorage.setItem('token', user.emailId.toString());
+    localStorage.setItem('token', user.emailId);
+
     return this._http.post<any>("http://localhost:8080/login", user)
   }
 
