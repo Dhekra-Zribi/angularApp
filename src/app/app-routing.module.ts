@@ -9,7 +9,7 @@ import { SmsListComponent } from './sms-list/sms-list.component';
 
 
 const routes: Routes = [
- // {path:'' , component:LoginComponent},
+  {path:'' , component:LoginComponent},
   {path:'loginsuccess' , component:LoginsuccessComponent, canActivate : [AuthGuard] },
   {path:'registration' , component:ResgistrationComponent},
   {path:'login' , component:LoginComponent},
