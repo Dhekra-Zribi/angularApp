@@ -23,11 +23,13 @@
       <th>Message</th>
       <th>Source Address</th>
       <th>Destination Address</th>
+      <th>Date time</th>
       <th> <i class="icon_cogs"></i>Action</th>
       <tr *ngFor="let sms of service.list">
         <td (click)="populateForm(sms)">{{sms.shortMessage}}</td>
         <td (click)="populateForm(sms)">{{sms.sourceAddr}}</td>
         <td (click)="populateForm(sms)">{{sms.destAddr}}</td>
+        <td (click)="populateForm(sms)">{{sms.date}} at {{sms.time}}</td>
         <td>
           <button (click)="onDelete(sms.id)" class="btn btn-danger"><i class="icon_close_alt2"></i></button>
         </td>
