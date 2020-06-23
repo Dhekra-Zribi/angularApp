@@ -31,6 +31,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +65,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatSlideToggleModule,
     MatButtonToggleModule,
     MatSelectModule,
+    Ng2SearchPipeModule
 
   ],
   providers: [AuthGuard],

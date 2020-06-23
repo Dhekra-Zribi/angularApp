@@ -5,8 +5,19 @@
   <section class="wrapper">
     <!--overview start-->
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-9">
         <h3 class="page-header"><i class="fa fa-table"></i>Messages</h3>
+      </div>
+
+      <div class="col-lg-3">
+        <form class="navbar-form">
+          <input class="form-control" type="text" name="search" placeholder="Search" [(ngModel)]="searchText" autocomplete="off" >
+        </form>
+      </div>
+        
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
         <ol class="breadcrumb">
           <li><i class="fa fa-home"></i><a href="/loginsuccess">Home</a></li>
           <li><i class="fa fa-th-list"></i>All Messages</li>
@@ -23,11 +34,13 @@
       <th>Message</th>
       <th>Source Address</th>
       <th>Destination Address</th>
+      <th>Date</th>
       <th> <i class="icon_cogs"></i>Action</th>
-      <tr *ngFor="let sms of service.list">
+      <tr *ngFor="let sms of service.list | filter:searchText">
         <td (click)="populateForm(sms)">{{sms.shortMessage}}</td>
         <td (click)="populateForm(sms)">{{sms.sourceAddr}}</td>
         <td (click)="populateForm(sms)">{{sms.destAddr}}</td>
+        <td (click)="populateForm(sms)">{{sms.dateTime}}</td>
         <td>
           <button (click)="onDelete(sms.id)" class="btn btn-danger"><i class="icon_close_alt2"></i></button>
         </td>

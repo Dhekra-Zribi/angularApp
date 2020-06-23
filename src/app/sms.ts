@@ -3,6 +3,7 @@ export class Sms {
     shortMessage:string;
     sourceAddr:string;
     destAddr:string;
+    dateTime:string;
     constructor(){
      }
 }
