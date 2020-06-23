@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class SmsListComponent implements OnInit {
 
+  searchText;
   constructor(public service: TranscieverService
    // ,private toastr: ToastrService
     ) { }
