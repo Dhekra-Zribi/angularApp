@@ -32,7 +32,8 @@ import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { StatistiqueComponent } from './statistique/statistique.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SmsListComponent,
     HeaderComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    StatistiqueComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatSlideToggleModule,
     MatButtonToggleModule,
     MatSelectModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgApexchartsModule
 
   ],
   providers: [AuthGuard],

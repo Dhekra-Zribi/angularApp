@@ -40,7 +40,7 @@
         <td (click)="populateForm(sms)">{{sms.shortMessage}}</td>
         <td (click)="populateForm(sms)">{{sms.sourceAddr}}</td>
         <td (click)="populateForm(sms)">{{sms.destAddr}}</td>
-        <td (click)="populateForm(sms)">{{sms.dateTime}}</td>
+        <td (click)="populateForm(sms)">{{sms.dateTime}} at {{sms.time}}</td>
         <td>
           <button (click)="onDelete(sms.id)" class="btn btn-danger"><i class="icon_close_alt2"></i></button>
         </td>
