@@ -6,6 +6,7 @@ import { ResgistrationComponent } from './resgistration/resgistration.component'
 import { TransciverComponent } from './transciver/transciver.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SmsListComponent } from './sms-list/sms-list.component';
+import { StatistiqueComponent } from './statistique/statistique.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:'login' , component:LoginComponent},
   {path:'sms' , component:TransciverComponent, canActivate : [AuthGuard]},
   {path:'smslist' , component:SmsListComponent, canActivate : [AuthGuard]},
+  {path:'count' , component:StatistiqueComponent},
   
   
 ];
