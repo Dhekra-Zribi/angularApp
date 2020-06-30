@@ -8,6 +8,8 @@ import { HttpClient } from "@angular/common/http";
 })
 export class RegistrationService {
 
+  list : User[];
+  user : User;
   userName : string
   constructor(private _http : HttpClient) { }
 
@@ -15,6 +17,8 @@ export class RegistrationService {
     this.userName = user.userName;
     localStorage.setItem('isLoggedIn', "true");  
     localStorage.setItem('token', user.emailId);
+    //let u = this.profil( localStorage.getItem('token'));
+    //window.localStorage.setItem('USER', JSON.stringify(u))
 
     return this._http.post<any>("http://localhost:8080/login", user)
   }
@@ -26,6 +30,12 @@ export class RegistrationService {
   logout() :void {    
     localStorage.setItem('isLoggedIn','false');    
     localStorage.removeItem('token');    
+    }  
+
+  profil(emailId : string) {    
+    //return 
+    this._http.get("http://localhost:8080/profil?emailId="+ emailId)  ;
+    //.toPromise().then(res => this.list = res as User[]);
     }  
 
 }
