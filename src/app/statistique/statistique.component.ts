@@ -20,6 +20,7 @@ import {
   ApexGrid
 } from "ng-apexcharts";
 import { dataSeries } from "./data-series";
+import { CountMsgDate } from '../count-msg-date.model';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -42,13 +43,11 @@ export class StatistiqueComponent implements OnInit {
   public chartOptions: Partial<ChartOptions>;
 
   nb : number; 
+  results: CountMsgDate [];
 
-  nbMsg : [];
-  dateMsg:[];
-  constructor(public service : StatistiqueService) {
-   // this.initChartData();
-    this.lineChart();
-   }
+  nbMsg : number[] = [];;
+  dateMsg: string[] = [];
+  constructor(public service : StatistiqueService) { }
 
   ngOnInit(): void {
     this.service.refreshList();
@@ -56,24 +55,18 @@ export class StatistiqueComponent implements OnInit {
     this.service.statistisque().subscribe(n => this.nb = n);
     
     this.service.count()
-    .subscribe(res => {
-      console.log("count msg",res)
-    })  
-  }
-  
-  lineChart(){
+    .subscribe((res : CountMsgDate[]) => {
+      res.forEach(x => {  
+        this.nbMsg.push(x.nb);  
+        this.dateMsg.push(x.date);  
+      });
+     // console.log("nb push",this.nbMsg)  
 
-    this.service.count()
-      .subscribe(res => {
-       // let liste = JSON.stringify(res);
-      //console.log(liste);
-      console.log("date", res[0].date);
-      
       this.chartOptions = {
         series: [
           {
             name: "Messages",
-            data: [res[0].nb, res[1].nb]
+            data: this.nbMsg
           }
         ],
         chart: {
@@ -100,10 +93,11 @@ export class StatistiqueComponent implements OnInit {
           }
         },
         xaxis: {
-          categories: [res[0].date,res[1].date]
+          categories: this.dateMsg
         }
       };
-    })
+      
+    })  
   }
 
 }
