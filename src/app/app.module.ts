@@ -34,6 +34,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StatistiqueComponent } from './statistique/statistique.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { ProfilComponent } from './profil/profil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { NgApexchartsModule } from "ng-apexcharts";
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
-    StatistiqueComponent
+    StatistiqueComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

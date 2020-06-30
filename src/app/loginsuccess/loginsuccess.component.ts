@@ -14,6 +14,8 @@ export class LoginsuccessComponent implements OnInit {
   
   ngOnInit() {  
     this.id = localStorage.getItem('token');  
+    let u = this._service.profil( this.id);
+    window.localStorage.setItem('USER', JSON.stringify(u))
     //console.log(this.id);  
   }  
   
