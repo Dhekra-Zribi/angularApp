@@ -24,7 +24,9 @@ export class RegistrationService {
   }
 
   public registerUserFromRemote(user : User):Observable<any> {
-    return this._http.post<any>("http://localhost:8080/registerUser", user)
+    if (user.password == user.confirmPassword) {
+      return this._http.post<any>("http://localhost:8080/registerUser", user)
+    }
   }
 
   logout() :void {    
