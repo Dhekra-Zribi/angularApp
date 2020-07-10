@@ -1,0 +1,38 @@
+<app-dashboard></app-dashboard>
+<section id="main-content">
+  <section class="wrapper">
+    <div class="row">
+      <div class="col-lg-9">
+        <h3 class="page-header"><i class="fa fa-table"></i>User Management</h3>
+      </div>
+
+      <div class="col-lg-3">
+        <form class="navbar-form">
+          <input class="form-control" type="text" name="search" placeholder="Search" [(ngModel)]="searchText" autocomplete="off" >
+        </form>
+      </div>-
+        
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <ol class="breadcrumb">
+          <li><i class="fa fa-home"></i><a href="/loginsuccess">Home</a></li>
+          <li><i class="icon_profile"></i>Users</li>
+        </ol>
+      </div>
+    </div>
+
+<br>
+    <div class="jumbtron">
+      <hr>
+      <div class="row">
+        <div class="col-md-5">
+          <app-user></app-user>
+        </div>
+        <div class="col-md-7">
+          <app-userlist></app-userlist>
+        </div>
+      </div>
+    </div>
+</section>
+</section>

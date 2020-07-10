@@ -12,19 +12,6 @@ import { TransciverComponent } from './transciver/transciver.component';
 import { AuthGuard } from './guards/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
-import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatSelectModule } from '@angular/material/select';
 import { SmsListComponent } from './sms-list/sms-list.component';
 import { ToastrService } from 'ngx-toastr';
 import { HeaderComponent } from './header/header.component';
@@ -35,6 +22,19 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StatistiqueComponent } from './statistique/statistique.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ProfilComponent } from './profil/profil.component';
+
+import { UserComponent } from './users/user/user.component';
+import { UsersComponent } from './users/users.component';
+import { UserlistComponent } from './users/userlist/userlist.component';
+import { MaterialModule } from './material/material.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RegisterComponent } from './_security/register/register.component';
+import { HomeComponent } from './_security/home/home.component';
+import { ProfileComponent } from './_security/profile/profile.component';
+import { BoardAdminComponent } from './_security/board-admin/board-admin.component';
+import { BoardUserComponent } from './_security/board-user/board-user.component';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +47,15 @@ import { ProfilComponent } from './profil/profil.component';
     FooterComponent,
     DashboardComponent,
     StatistiqueComponent,
-    ProfilComponent
+    ProfilComponent,
+    UserComponent,
+    UsersComponent,
+    UserlistComponent,
+    RegisterComponent,
+    HomeComponent,
+    ProfileComponent,
+    BoardAdminComponent,
+    BoardUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,24 +64,17 @@ import { ProfilComponent } from './profil/profil.component';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatSortModule,
-    MatTableModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatButtonToggleModule,
-    MatSelectModule,
+    MaterialModule,
+    MatDialogModule,
     Ng2SearchPipeModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    CommonModule
+    
+    
 
   ],
-  providers: [AuthGuard],
+ // providers: [AuthGuard],
+ providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
