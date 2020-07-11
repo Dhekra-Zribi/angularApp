@@ -3,6 +3,7 @@ import {NgForm, FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { RegistrationService } from '../registration.service';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-resgistration',
@@ -13,30 +14,18 @@ export class ResgistrationComponent implements OnInit {
 
   user= new User();
   msg=''
-  /*registerForm: FormGroup;
-  submitted = false;*/
+  
+  form: any = {};
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
-  constructor(private _service : RegistrationService, private _route : Router
-   // , private formBuilder: FormBuilder
+  constructor(private _service : RegistrationService, private _route : Router,
+    private authService: AuthService
     ) { }
 
   ngOnInit(): void {
-    /*this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      userName: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-  }, {
-      validator: this.MustMatch('password', 'confirmPassword')
-  });*/
   }
-  // convenience getter for easy access to form fields
- // get f() { return this.registerForm.controls; }
-
-  /*onReset() {
-    this.submitted = false;
-    this.registerForm.reset();
-  }*/
 
   registerUser(){
 
@@ -54,24 +43,21 @@ export class ResgistrationComponent implements OnInit {
       }
     )
   }
-/*
-  MustMatch(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-        const control = formGroup.controls[controlName];
-        const matchingControl = formGroup.controls[matchingControlName];
 
-        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-            // return if another validator has already found an error on the matchingControl
-            return;
-        }
 
-        // set error on matchingControl if validation fails
-        if (control.value !== matchingControl.value) {
-            matchingControl.setErrors({ mustMatch: true });
-        } else {
-            matchingControl.setErrors(null);
-        }
-    }
-}*/
 
+
+  onSubmit() {
+    this.authService.register(this.form).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
+  }
 }
