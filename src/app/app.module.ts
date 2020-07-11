@@ -26,7 +26,6 @@ import { ProfilComponent } from './profil/profil.component';
 import { UserComponent } from './users/user/user.component';
 import { UsersComponent } from './users/users.component';
 import { UserlistComponent } from './users/userlist/userlist.component';
-import { MaterialModule } from './material/material.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegisterComponent } from './_security/register/register.component';
 import { HomeComponent } from './_security/home/home.component';
@@ -64,7 +63,6 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MaterialModule,
     MatDialogModule,
     Ng2SearchPipeModule,
     NgApexchartsModule,
