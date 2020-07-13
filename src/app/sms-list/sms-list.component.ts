@@ -28,11 +28,14 @@ export class SmsListComponent implements OnInit {
 
   onDelete(id: number) {
     if (confirm('Are you sure to delete this record?')) {
-      this.service.deleteSms(id).subscribe(res => {
-        this.service.refreshList();
+      this.service.deleteSms(id).subscribe();
+      window.location.reload();
+    
+        //res => {
+        //this.service.refreshList();
         
         //this.toastr.warning('Deleted successfully');
-      });
+     // });
 /*
 
       this.service.deleteSms(id).subscribe((data)=>{
