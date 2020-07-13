@@ -72,7 +72,7 @@ import { CommonModule } from '@angular/common';
 
   ],
  // providers: [AuthGuard],
- providers: [authInterceptorProviders],
+ providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

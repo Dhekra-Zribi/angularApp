@@ -46,8 +46,12 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
+    //console.log(this.form.userName);
+    //console.log(this.form.password);
     this.authService.login(this.form).subscribe(
       data => {
+        //console.log(data);
+        //console.log(data.userName);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
 
@@ -58,13 +62,17 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.errorMessage = err.error.message;
+        console.log(this.errorMessage);
+        console.log(err.error.propertyName, err.error );
         this.isLoginFailed = true;
       }
     );
   }
 
+
   reloadPage() {
-    window.location.reload();
+   // window.location.reload();
+    this._route.navigate(['/loginsuccess']);
   }
 
   loginUser(){

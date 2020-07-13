@@ -22,14 +22,13 @@ import { BoardAdminComponent } from './_security/board-admin/board-admin.compone
 
 
 const routes: Routes = [
-  /*
+ 
   {path:'loginsuccess' , component:LoginsuccessComponent, canActivate : [AuthGuard] },
   
-  {path:'login' , component:LoginComponent},
   {path:'sms' , component:TransciverComponent, canActivate : [AuthGuard]},
   {path:'smslist' , component:SmsListComponent, canActivate : [AuthGuard]},
   {path:'profil' , component:ProfilComponent, canActivate : [AuthGuard]},
-  {path:'users' , component:UsersComponent, canActivate : [AuthGuard]},*/
+  {path:'users' , component:UsersComponent, canActivate : [AuthGuard]},
 
   {path:'' , component:LoginComponent},
   {path:'registration' , component:ResgistrationComponent},
