@@ -11,6 +11,14 @@ export class TranscieverService {
   list : Sms[];
   constructor(private _http : HttpClient) { }
 
+
+
+  createMultSms(formData :any):Observable<any>{
+    
+    return this._http.post<any>("http://localhost:8080/api/trxMult/sms/createMult",formData)
+   
+}
+
   public createSms(sms : Sms):Observable<any>{
     alert('Sms send :)');
     return this._http.post<any>("http://localhost:8080/sms/create", sms)

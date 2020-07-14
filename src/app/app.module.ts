@@ -34,6 +34,7 @@ import { BoardAdminComponent } from './_security/board-admin/board-admin.compone
 import { BoardUserComponent } from './_security/board-user/board-user.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CommonModule } from '@angular/common';
+import { CompagneComponent } from './compagne/compagne.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { CommonModule } from '@angular/common';
     ProfileComponent,
     BoardAdminComponent,
     BoardUserComponent,
+    CompagneComponent
   ],
   imports: [
     BrowserModule,

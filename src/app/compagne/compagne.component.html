@@ -1,0 +1,109 @@
+<app-dashboard></app-dashboard>
+<!--main content start-->
+<section id="main-content">
+  <section class="wrapper">
+    <!--overview start-->
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="page-header"><i class="icon-envelope-l"></i>Message</h3>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-home"></i><a href="/loginsuccess">Home</a></li>
+          <li><i class="icon-envelope-l"></i>Message</li>
+        </ol>
+      </div>
+    </div>
+
+
+<br>
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-4">
+        
+        <div class="recent">
+          <h3>Send a message</h3>
+        </div>
+        
+        
+        <form [formGroup]="form" (ngSubmit)="sendMultSms(form)"  role="form" class="contactForm" required >
+         
+          <div class="form-group">
+            <label for="shortMessage">Message:</label>
+            <textarea class="form-control" formControlName="shortMessage"  placeholder="Enter your message"  required ></textarea>
+            
+            <span class="error"  *ngIf="shortMessage.invalid && (shortMessage.dirty || shortMessage.touched)" > Message is required</span>
+            
+          </div>
+    
+          <div class="form-group">
+            <label for="sourceAddr">Source Address:</label>
+            <input type="tel" class="form-control"  formControlName="sourceAddr"    placeholder="Enter source address"  required pattern="[0-9 ]{8}" >
+            
+            <span  class="error"  *ngIf="sourceAddr.invalid && (sourceAddr.dirty || sourceAddr.touched)"> Source Address is required</span>
+            
+          </div>
+    
+          <div class="form-group">
+            <label for="destAddr">Destination Address:</label>
+            
+           
+           
+            <label class="btn btn-default">
+              <input type="file" (change)="uploadListener($event)"formControlName="file"  />
+            </label>
+            
+           
+            <span  class="error"  *ngIf="file.invalid && (file.dirty || file.touched)">file is required</span>
+          
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+          </div>
+
+
+
+
+
+
+
+    
+          <div class="text-center">
+            <button  type="submit" class="btn btn-info">Send Message</button>
+            <button  type="reset" class="btn btn-light">Cancel</button>
+          </div>
+          
+        </form>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="recent">
+        </div>
+        <div class="">
+         <!-- <app-sms-list></app-sms-list>-->
+        </div>
+      </div>
+    
+    </div>
+    <!-- project team & activity end -->
+  </section>
+  <div class="text-right">
+    <div class="credits">
+      <!--
+        All the links in the footer should remain intact.
+        You can delete the links only if you purchased the pro version.
+        Licensing information: https://bootstrapmade.com/license/
+        Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
+      -->
+     <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
+    </div>
+  </div>
+</section>
+<!--main content end-->
