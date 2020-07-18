@@ -15,6 +15,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 export class CompagneComponent implements OnInit {
  
  public userfile :any=File;
+ 
 
   form:any=FormGroup;
   public csvFile:any=FileList;
@@ -89,6 +90,9 @@ export class CompagneComponent implements OnInit {
     const formData = new FormData();
     formData.append('file',  this.userfile);
     formData.append('sms', JSON.stringify(sms));
+    
+    
+
    
     this._service.createMultSms(formData).subscribe(
       data => {
