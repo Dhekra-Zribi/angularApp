@@ -3,6 +3,7 @@ import { Sms } from '../sms';
 import { TranscieverService } from '../transciever.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
 //import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -13,8 +14,10 @@ import { Router } from '@angular/router';
 export class SmsListComponent implements OnInit {
 
   searchText;
+  p :number = 1;
   constructor(public service: TranscieverService,
-    private route : Router
+    private route : Router,
+    public authService : AuthService
    // ,private toastr: ToastrService
     ) { }
 

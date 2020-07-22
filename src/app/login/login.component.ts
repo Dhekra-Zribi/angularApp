@@ -54,11 +54,14 @@ export class LoginComponent implements OnInit {
         //console.log(data.userName);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
+        this.tokenStorage.isLoggedIn("true");
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
+        this._route.navigate(['/loginsuccess']);
+        
+        
       },
       err => {
         this.errorMessage = err.error.message;
@@ -69,13 +72,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-
-  reloadPage() {
-   // window.location.reload();
-    this._route.navigate(['/loginsuccess']);
-  }
-
-  loginUser(){
+  /*loginUser(){
     this._service.loginUserFromRemote(this.user).subscribe(
       data => {
         console.log("response received");
@@ -91,5 +88,5 @@ export class LoginComponent implements OnInit {
   gotoregistration(){
     this._route.navigate(['/registration']);
   }
-
+*/
 }

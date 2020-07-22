@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { TokenStorageService } from './token-storage.service';
 
 const AUTH_API = 'http://localhost:8080/api/auth/';
 
@@ -14,18 +15,9 @@ const httpOptions = {
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  role: string[] = [];
+  constructor(private http: HttpClient,private tokenStorage: TokenStorageService) { }
 
-  /*login(credentials) {
-    return this.http.post(AUTH_API + 'signin', {
-      username: credentials.username,
-      password: credentials.password
-    }, httpOptions). 
-    pipe 
-    (
-     catchError(this.handleError)
-    );
-  }*/
    login(user){
      console.log(user);
     return this.http.post<any>(AUTH_API + 'signin', user)
@@ -42,7 +34,30 @@ export class AuthService {
     return this.http.post(AUTH_API + 'signup', {
       userName: user.userName,
       emailId: user.emailId,
+      mobile: user.mobile,
+      phone:user.phone,
       password: user.password
     }, httpOptions);
+  }
+
+  addUser(user): Observable<any> {
+    return this.http.post(AUTH_API + 'signup', {
+      userName: user.userName,
+      emailId: user.emailId,
+      mobile: user.mobile,
+      phone:user.phone,
+      password: user.password,
+      roles : user.roles
+    }, httpOptions);
+  }
+
+  isAdmin():boolean{
+    this.role[0]= this.tokenStorage.getUser().roles;
+    if(this.role[0]=="Administrator"){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
