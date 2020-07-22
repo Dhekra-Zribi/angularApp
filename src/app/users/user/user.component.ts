@@ -1,8 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef,EventEmitter, ViewChild ,Output} from '@angular/core';
 import { UserService } from 'src/app/user.service';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../user';
+import { AuthService } from 'src/app/_services/auth.service';
+import { UserlistComponent } from '../userlist/userlist.component';
+import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -10,33 +13,66 @@ import { User } from '../../user';
 })
 export class UserComponent implements OnInit {
 
+  @Output() alerteCanicule = new EventEmitter<any>();
+  onTemperatureRises() {
+    this.alerteCanicule.emit();  // Déclenche l'output
+    console.log("ouiii")
+  }
   user= new User();
   msg=''
-  
-  @ViewChild('role') role: ElementRef;
+  errorMessage = '';
+  role: string[] = [];
+  id: number;
+  @ViewChild('roles') roles: ElementRef;
 
   constructor(public service: UserService
-    , private _route : Router) { }
+    , private _route : Router,
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    public dialogRef:MatDialogRef<UserComponent>
+    ) { }
+
 
   ngOnInit() {
-    this.resetForm();
+    //this.resetForm();
+
+    this.id = this.service.dataFromService;
+    if (this.id==null) {
+      this.resetForm();
+      console.log("reset",this.id);
+    }
+    else{
+      console.log(this.id);
+       this.service.getUser(this.id)
+      .subscribe(data => {
+        console.log(data)
+        this.user = data;
+      }, error => console.log(error));
+      
+    }
+    
+    
   }
 
-  addUser(){
-
-    this.user.role = this.role.nativeElement.value;
-    this.service.registerUserFromRemote(this.user).subscribe(
+  add(){
+    
+    this.role[0] = this.roles.nativeElement.value;
+    this.user.roles[0] = this.role[0];
+    this.authService.addUser(this.user).subscribe(
       data => {
-        console.log("response received");
-       // this.msg="Registration successful";
+        console.log(data);
+        window.location.reload();
       },
-      error => {
-        console.log("exception occured");
-       // this.msg=error.error;
-        this.msg="Email is already exist!";
-        ;
+      err => {
+        this.errorMessage = err.error.message;
       }
-    )
+    );
+  }
+
+  close(){
+    this.dialogRef.close();
+    window.location.reload();
+    
   }
 
   resetForm(form?: NgForm) {
@@ -48,30 +84,33 @@ export class UserComponent implements OnInit {
       emailId: '',
       password: '',
       confirmPassword: '',
-      role:''
+      roles:null,
+      mobile:'',
+      phone:''
     }
   }
+  
 
 
-/*  onSubmit(form: NgForm) {
-    if (form.value.id == null)
-      this.insertRecord(form);
-    //else
-     // this.updateRecord(form);
+  onSubmit(form: NgForm) {
+    if (form.value.id == null){
+      this.add();
+    }
+    else{
+       this.update();
+       this.resetForm();
+    }
+     
   }
 
-  insertRecord(form: NgForm) {
-    this.service.postUser(form.value).subscribe(res => {
-      this.resetForm(form);
-      this.service.refreshList();
-    });
+
+  update() {
+    
+    this.service.putProfileUser(this.id, this.user)
+      .subscribe(
+        data => console.log(data),
+        error => console.log(error));
+    
+    window.location.reload();
   }
-
-  updateRecord(form: NgForm) {
-    this.service.putUser(form.value).subscribe(res => {
-      this.resetForm(form);
-      this.service.refreshList();
-    });
-  }*/
-
 }

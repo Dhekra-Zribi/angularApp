@@ -1,5 +1,7 @@
-<form  #Registrationform="ngForm" (ngSubmit)="addUser()">
-      
+<form  #form="ngForm" (ngSubmit)="onSubmit(form)" name="user">
+  
+  <button type="button" (click)="close()" class="close btn btn-info float-right"><i class="icon_close"></i></button>
+  <input type="hidden" name="id" #id="ngModel" [(ngModel)]="user.id">
       <div >
         <small class="text-danger">{{msg}}</small>
         <div class="float-right btextual" *ngIf="email.errors && (email.invalid && email.touched)">
@@ -30,6 +32,32 @@
         </div>
 
         <div class="float-right btextual">
+          <small class="text-danger" [class.d-none]="mobile.valid || mobile.untouched">mobile is required field!</small>
+        </div>
+        <label>Mobile</label>
+          <div class="input-group input-group-lg" >
+            <div class="input-group-prepend">
+              
+            </div>
+          <input type="text" class="form-control"  name="mobile" [(ngModel)]="user.mobile" required #mobile="ngModel"
+          [class.is-invalid]="mobile.invalid && mobile.touched" aria-describedby="inputGroup-sizing-sm" aria-label="mobile" 
+          >
+        </div>
+
+        <div class="float-right btextual">
+          <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">phone is required field!</small>
+        </div>
+        <label>Phone</label>
+          <div class="input-group input-group-lg" >
+            <div class="input-group-prepend">
+              
+            </div>
+          <input type="text" class="form-control"  name="phone" [(ngModel)]="user.phone" required #phone="ngModel"
+          [class.is-invalid]="phone.invalid && phone.touched" aria-describedby="inputGroup-sizing-sm" aria-label="phone" 
+          >
+        </div>
+
+        <div class="float-right btextual">
           <small class="text-danger" [class.d-none]="password.valid || password.untouched">password is required field!</small>
         </div>
         <label>Password</label>
@@ -43,7 +71,7 @@
          </div>
 
 
-         <div class="float-right btextual">
+         <!--<div class="float-right btextual">
           <small class="text-danger" [class.d-none]="(pwd.value == password.value) || pwd.untouched">password and confirm password must be the same!</small>
          </div>
          <label>Confirm Password</label>
@@ -52,23 +80,23 @@
           </div>
           <input type="password" class="form-control" name="pwd" #pwd="ngModel" [(ngModel)]="user.confirmPassword" required 
             [class.is-invalid]="pwd.invalid && pwd.touched" aria-describedby="inputGroup-sizing-sm" aria-label="confirmPassword">
-          </div>
+          </div>-->
 
           
-          <label for="role">Role</label>
+          <label for="roles">Role</label>
           <div class="input-group input-group-lg" >
             
-            <select class="form-control" id="role" aria-describedby="inputGroup-sizing-sm" aria-label="role" 
-            [(ngModel)]="user.role" #role>
+            <select class="form-control" id="roles" aria-describedby="inputGroup-sizing-sm" aria-label="roles" 
+            [(ngModel)]="user.roles" #roles>
               <option >User</option>
-              <option>Administrator</option>
+              <option >Administrator</option>
               
             </select>
           </div>
           <br>
           
         <div class="text-right">
-          <button [disabled]="Registrationform.form.invalid" type="submit" class="btn btn-info">Submit</button>
+          <button [disabled]="form.form.invalid" type="submit" class="btn btn-info">Submit</button>
           <button  type="reset" class="btn btn-light">Cancel</button>
         </div>
       

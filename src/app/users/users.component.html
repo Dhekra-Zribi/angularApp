@@ -1,5 +1,5 @@
 <app-dashboard></app-dashboard>
-<section id="main-content">
+<section id="main-content" *ngIf="authService.isAdmin()">
   <section class="wrapper">
     <div class="row">
       <div class="col-lg-9">
@@ -24,12 +24,8 @@
 
 <br>
     <div class="jumbtron">
-      <hr>
       <div class="row">
-        <div class="col-md-5">
-          <app-user></app-user>
-        </div>
-        <div class="col-md-7">
+        <div class="col-sm-12">
           <app-userlist></app-userlist>
         </div>
       </div>

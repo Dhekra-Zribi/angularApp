@@ -8,6 +8,9 @@ export class TokenStorageService {
 
   constructor() { }
 
+  public isLoggedIn(t){
+    window.sessionStorage.setItem('isLoggedIn', "true");
+  }
   signOut() {
     window.sessionStorage.clear();
   }

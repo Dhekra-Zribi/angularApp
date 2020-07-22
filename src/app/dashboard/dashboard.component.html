@@ -221,7 +221,7 @@
                             <!--<span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>-->
-                            <span class="username">{{id}} </span>
+                            <span class="username">{{userName}} </span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
@@ -273,7 +273,7 @@
           </li>
 
 
-          <li class="sub-menu">
+          <li class="sub-menu" *ngIf="authService.isAdmin()">
             <a href="/sms" class="">
                           <i class="icon-envelope-l"></i>
                           <span>Message</span>
@@ -284,14 +284,14 @@
             </ul>
           </li>
 
-          <li >
+          <li *ngIf="authService.isAdmin()">
             <a class="" href="/smslist">
               <i class="icon_table"></i>
                           <span>All Messages</span>
                       </a>
           </li>
 
-          <li >
+          <li *ngIf="authService.isAdmin()">
             <a class="" href="/users">
               <i class="icon_profile"></i>
                           <span>User Management</span>

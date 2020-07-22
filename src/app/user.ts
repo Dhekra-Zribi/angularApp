@@ -4,7 +4,17 @@ export class User {
     userName:string;
     password:string;
     confirmPassword:string;
-    role:string;
+    roles:string[] = [];
+    mobile:string;
+    phone:string;
     constructor(){
      }
+}
+
+export class Role {
+
+    role_id:string;
+    name:string;
+    constructor(){
+    }
 }

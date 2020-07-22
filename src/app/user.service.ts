@@ -2,43 +2,56 @@ import { Injectable } from '@angular/core';
 import { User } from './user';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { FormGroup } from '@angular/forms';
+
+const AUTH_API = 'http://localhost:8080/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  f : FormGroup;
   formData  : User;
+  profile : any;
   list : User[];
   user : User;
+  form:  FormGroup; 
+  dataFromService;
+  l: any={}
 
   constructor(private http : HttpClient) { }
 
   public registerUserFromRemote(user : User):Observable<any> {
     if (user.password == user.confirmPassword) {
-      return this.http.post<any>("http://localhost:8080/registerUser", user)
+      return this.http.post<any>("http://localhost:8080/api/auth/registerUser", user)
     }
   }
-  
- /* postUser(formData : User){
-   return this.http.post("http://localhost:8080/registerUser",formData);
-    
-  }*/
 
   refreshList(){
-    this.http.get("http://localhost:8080/users")
+    this.http.get("http://localhost:8080/api/auth/users")
     .toPromise().then(res => this.list = res as User[]);
+    
   }
   public deleteUser(id : number):Observable<any>{
-    return this.http.delete<any>("http://localhost:8080/userdelete?id="+id)
+    return this.http.delete<any>("http://localhost:8080/api/auth/userdelete?id="+id)
   }
+  
 
- /* putUser(formData : User){
-    return this.http.put("url"+formData.id,formData);
-     
+  updateUser(id: number, user): Observable<Object>{
+    //return this.http.put<any>("http://localhost:8080/users?id="+id, user);
+    return this.http.put<any>("http://localhost:8080/api/auth/update?id="+id, user);
    }
 
-   deleteUser(id : number){
-    return this.http.delete("url"+id);
-   }*/
+  putProfileUser(id: number, user): Observable<Object>{
+    return this.http.put<any>("http://localhost:8080/api/auth/profile?id="+id, user);
+  }
+
+
+   getUser(id: number): Observable<any> {
+    return this.http.get("http://localhost:8080/api/auth/user?id="+id);
+  }
+
+  
+  
 }

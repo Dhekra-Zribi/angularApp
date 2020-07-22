@@ -1,6 +1,6 @@
 <app-dashboard></app-dashboard>
 <!--main content start-->
-<section id="main-content">
+<section id="main-content" *ngIf="authService.isAdmin()">
   <section class="wrapper">
     <!--overview start-->
     <div class="row">

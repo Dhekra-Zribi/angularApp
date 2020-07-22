@@ -1,7 +1,7 @@
 
 <app-dashboard></app-dashboard>
 <!--main content start-->
-<section id="main-content">
+<section id="main-content" *ngIf="authService.isAdmin()">
   <section class="wrapper">
     <!--overview start-->
     <div class="row">
@@ -29,14 +29,16 @@
 <br>
 
 <div class="row">
-  <div class="col-lg-10">
+  <div class="col-lg-12">
     <table class="table table-striped table-advance table-hover">
+      <thead  class="thead-light">
       <th>Message</th>
       <th>Source Address</th>
       <th>Destination Address</th>
       <th>Date</th>
       <th> <i class="icon_cogs"></i>Action</th>
-      <tr *ngFor="let sms of service.list | filter:searchText">
+      </thead>
+      <tr *ngFor="let sms of service.list | filter:searchText | paginate: { itemsPerPage: 10, currentPage: p}">
         <td (click)="populateForm(sms)">{{sms.shortMessage}}</td>
         <td (click)="populateForm(sms)">{{sms.sourceAddr}}</td>
         <td (click)="populateForm(sms)">{{sms.destAddr}}</td>
@@ -46,4 +48,8 @@
         </td>
       </tr>
     </table>
+    <div class="float-right">
+      <pagination-controls (pageChange)="p =$event"></pagination-controls>
+    </div>
   </div>
+  

@@ -53,6 +53,7 @@ export class ResgistrationComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        this._route.navigate(['/login']);
       },
       err => {
         this.errorMessage = err.error.message;

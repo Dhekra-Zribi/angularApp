@@ -27,13 +27,11 @@ import { UserComponent } from './users/user/user.component';
 import { UsersComponent } from './users/users.component';
 import { UserlistComponent } from './users/userlist/userlist.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { RegisterComponent } from './_security/register/register.component';
-import { HomeComponent } from './_security/home/home.component';
-import { ProfileComponent } from './_security/profile/profile.component';
-import { BoardAdminComponent } from './_security/board-admin/board-admin.component';
-import { BoardUserComponent } from './_security/board-user/board-user.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CommonModule } from '@angular/common';
+import { PwdComponent } from './profil/pwd/pwd.component';
+
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,11 +48,7 @@ import { CommonModule } from '@angular/common';
     UserComponent,
     UsersComponent,
     UserlistComponent,
-    RegisterComponent,
-    HomeComponent,
-    ProfileComponent,
-    BoardAdminComponent,
-    BoardUserComponent,
+    PwdComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +60,9 @@ import { CommonModule } from '@angular/common';
     MatDialogModule,
     Ng2SearchPipeModule,
     NgApexchartsModule,
-    CommonModule
+    CommonModule,
+    NgxPaginationModule
+    
     
     
 
