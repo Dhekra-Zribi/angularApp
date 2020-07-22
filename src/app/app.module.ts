@@ -27,14 +27,11 @@ import { UserComponent } from './users/user/user.component';
 import { UsersComponent } from './users/users.component';
 import { UserlistComponent } from './users/userlist/userlist.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { RegisterComponent } from './_security/register/register.component';
-import { HomeComponent } from './_security/home/home.component';
-import { ProfileComponent } from './_security/profile/profile.component';
-import { BoardAdminComponent } from './_security/board-admin/board-admin.component';
-import { BoardUserComponent } from './_security/board-user/board-user.component';
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CommonModule } from '@angular/common';
 import { CompagneComponent } from './compagne/compagne.component';
+import { PwdComponent } from './profil/pwd/pwd.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,12 +48,8 @@ import { CompagneComponent } from './compagne/compagne.component';
     UserComponent,
     UsersComponent,
     UserlistComponent,
-    RegisterComponent,
-    HomeComponent,
-    ProfileComponent,
-    BoardAdminComponent,
-    BoardUserComponent,
-    CompagneComponent
+    CompagneComponent,
+    PwdComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +61,8 @@ import { CompagneComponent } from './compagne/compagne.component';
     MatDialogModule,
     Ng2SearchPipeModule,
     NgApexchartsModule,
-    CommonModule
+    CommonModule,
+    NgxPaginationModule
     
     
 
