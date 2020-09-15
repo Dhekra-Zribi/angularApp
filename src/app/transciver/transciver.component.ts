@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Sms } from '../sms';
 import { TranscieverService } from '../transciever.service';
 import { AuthService } from '../_services/auth.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-transciver',
   templateUrl: './transciver.component.html',
@@ -19,7 +21,8 @@ export class TransciverComponent implements OnInit {
   isLoadingResults = true;
 
   constructor(private _service : TranscieverService, private _route : Router
-    , public authService : AuthService
+    , public authService : AuthService,
+    public dialogRef:MatDialogRef<TransciverComponent>
     //,private sendSmsform : NgForm
     ) { }
 
@@ -39,6 +42,14 @@ export class TransciverComponent implements OnInit {
     data => {
       //alert('Sms send :)');
       console.log("Message send");
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'SMS send.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      window.location.reload();
      //this._route.navigate(['/sms']);
      //this.sendSmsform.reset();
     },
@@ -87,5 +98,14 @@ export class TransciverComponent implements OnInit {
         }
     )
   }
+
+  close(){
+    this.dialogRef.close();
+    window.location.reload();
+    
+  }
+
+
+  
 
 }

@@ -5,6 +5,7 @@ export class Sms {
     destAddr:string;
     dateTime:string;
     time:string;
+    type:string;
     constructor(){
      }
 }

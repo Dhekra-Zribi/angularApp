@@ -11,15 +11,16 @@
       <i class="fa fa-plus"></i>Add</a>
     </th>
   </thead>
-  <tr *ngFor="let user of service.list | filter:u.searchText | paginate: { itemsPerPage: 5, currentPage: p}">
+  <tr *ngFor="let user of service.list | filter:u.searchText | paginate: { itemsPerPage: 8, currentPage: p}">
     <td (click)="populateForm(user)">{{user.emailId}}</td>
     <td (click)="populateForm(user)">{{user.userName}}</td>
     <td (click)="populateForm(user)">{{user.mobile}}</td>
     <td (click)="populateForm(user)">{{user.phone}}</td>
     <td (click)="populateForm(user)">{{user.roles[0].name}}</td>
     <td>
-      <button (click)="update(user)" class="btn btn-info"><i class="fa fa-pencil fa-lg"></i></button>
-      <button (click)="onDelete(user.id)" class="btn btn-danger"><i class="icon_close_alt2"></i></button>
+      <button (click)="update(user)" class="btn btn-warning"><i class="fa fa-pencil fa-lg"></i></button>
+      <label>|</label>
+      <button (click)="onDelete(user.id)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
     </td>
   </tr>
 </table>

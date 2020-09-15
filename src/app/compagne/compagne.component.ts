@@ -6,6 +6,8 @@ import { Sms } from '../sms';
 import { Router } from '@angular/router'
 import { TranscieverService } from '../transciever.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { MatDialogRef } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-compagne',
@@ -22,7 +24,9 @@ export class CompagneComponent implements OnInit {
   @ViewChild('csvReader') csvReader: any;  
 
 
-  constructor(private _service : TranscieverService , private formBuilder: FormBuilder,private _route : Router) {
+  constructor(private _service : TranscieverService , private formBuilder: FormBuilder,private _route : Router,
+    
+    public dialogRef:MatDialogRef<CompagneComponent>) {
     
     this.form = this.formBuilder.group({
       shortMessage:['', Validators.required],
@@ -96,8 +100,16 @@ export class CompagneComponent implements OnInit {
    
     this._service.createMultSms(formData).subscribe(
       data => {
-        alert('Sms send :)');
+        //alert('Sms send :)');
         console.log("Message send");
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'SMS send.',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        window.location.reload();
        //this._route.navigate(['/sms']);
        //this.sendSmsform.reset();
       },
@@ -109,6 +121,13 @@ export class CompagneComponent implements OnInit {
      );
     
  
+      
+    }
+
+
+    close(){
+      this.dialogRef.close();
+      window.location.reload();
       
     }
   }

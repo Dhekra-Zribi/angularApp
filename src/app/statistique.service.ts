@@ -18,8 +18,23 @@ export class StatistiqueService {
     .pipe(map(rs => rs));
   }
 
+  statistisque2():Observable<number>{
+    return this._http.get<number>("http://localhost:8080/count2")
+    .pipe(map(rs => rs));
+  }
+
+  statistisque3():Observable<number>{
+    return this._http.get<number>("http://localhost:8080/count3")
+    .pipe(map(rs => rs));
+  }
+
   count() {
     return this._http.get("http://localhost:8080/nb")
+    .pipe(map(result => result));
+  }
+
+  count2() {
+    return this._http.get("http://localhost:8080/api/auth/nb2")
     .pipe(map(result => result));
   }
 

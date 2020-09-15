@@ -20,7 +20,8 @@ import {
   ApexGrid
 } from "ng-apexcharts";
 import { dataSeries } from "./data-series";
-import { CountMsgDate } from '../count-msg-date.model';
+import { CountMsgDate, CountTr } from '../count-msg-date.model';
+
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -32,6 +33,7 @@ export type ChartOptions = {
   title: ApexTitleSubtitle;
 };
 
+
 @Component({
   selector: 'app-statistique',
   templateUrl: './statistique.component.html',
@@ -40,19 +42,36 @@ export type ChartOptions = {
 export class StatistiqueComponent implements OnInit {
 
   @ViewChild("chart") chart: ChartComponent;
+ // @ViewChild("chart") chart2: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
+  public chartOptions2: Partial<ChartOptions>;
+
+  
+
+
   nb : number; 
+  nbb : number;
+  nbbb : number;
   results: CountMsgDate [];
 
-  nbMsg : number[] = [];;
+  results2: CountTr [];
+
+  
+
+  nbMsg : number[] = [];
   dateMsg: string[] = [];
+
+  nbMsg2 : number[] = [];
+  dateMsg2: string[] = [];
   constructor(public service : StatistiqueService) { }
 
   ngOnInit(): void {
     this.service.refreshList();
   
     this.service.statistisque().subscribe(n => this.nb = n);
+    this.service.statistisque2().subscribe(n => this.nbb = n);
+    this.service.statistisque3().subscribe(n => this.nbbb = n);
     
     this.service.count()
     .subscribe((res : CountMsgDate[]) => {
@@ -83,7 +102,7 @@ export class StatistiqueComponent implements OnInit {
           curve: "straight"
         },
         title: {
-          text: "Messages per day",
+          text: "Send Messages Per Day",
           align: "left"
         },
         grid: {
@@ -98,6 +117,41 @@ export class StatistiqueComponent implements OnInit {
       };
       
     })  
+
+
+
+
+    ////
+
+    this.service.count2()
+    .subscribe((res : CountTr[]) => {
+      res.forEach(x => {  
+        this.nbMsg2.push(x.nb);  
+        this.dateMsg2.push(x.date);  
+        
+      });
+    })
+    
+    this.chartOptions2 = {
+      series: [
+        {
+          name: "Messages",
+          data: this.nbMsg2
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "bar"
+      },
+      title: {
+        text: "Received Messages Per Day"
+      },
+      xaxis: {
+        categories: this.dateMsg2
+      }
+    };
+ 
+      
   }
 
 }

@@ -5,3 +5,11 @@ export class CountMsgDate {
     constructor(){
      }
 }
+
+export class CountTr {
+    id:number;
+    date:string;
+    nb:number;
+    constructor(){
+     }
+}
