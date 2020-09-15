@@ -6,6 +6,7 @@ import { UsersComponent } from '../users.component';
 import { Router } from '@angular/router';
 import { NgForm, FormBuilder } from '@angular/forms';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-userlist',
@@ -29,12 +30,31 @@ export class UserlistComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    if (confirm('Are you sure to delete this record?')) {
-      this.service.deleteUser(id).subscribe(res => {
-        this.service.refreshList();
-      });
-      window.location.reload();
-  }
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to delete this record!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it',
+      }).then((result) => {
+  
+        if (result.isConfirmed) {
+  
+          this.service.deleteUser(id).subscribe(res => {
+            this.service.refreshList();
+          });
+          window.location.reload();
+          console.log('Clicked Yes, File deleted!');
+  
+        } else if (result.isDismissed) {
+  
+          console.log('Clicked No, File is safe!');
+  
+          
+        }
+      })
+  
 }
 
   selectUser(item :User){
@@ -44,7 +64,7 @@ export class UserlistComponent implements OnInit {
   }
 
   AddData(index,Id){ 
-     
+    this.service.isOk=true;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
@@ -55,7 +75,7 @@ export class UserlistComponent implements OnInit {
   }
 
   update(user){
-    
+    this.service.isOk=false;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;

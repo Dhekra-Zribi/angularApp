@@ -13,6 +13,11 @@ import { UserlistComponent } from './users/userlist/userlist.component';
 import { UserComponent } from './users/user/user.component';
 
 import { CompagneComponent } from './compagne/compagne.component';
+import { TicketComponent } from './ticket/ticket.component';
+import { DetailticketComponent } from './ticket/detailticket/detailticket.component';
+import { SmsRecuComponent } from './sms-recu/sms-recu.component';
+import { UploadFilesComponent } from './upload-files/upload-files.component';
+import { SettingComponent } from './setting/setting.component';
 
 
 
@@ -30,6 +35,16 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
   {path:'multiplesend' , component:CompagneComponent, canActivate : [AuthGuard]},
+  
+  {path:'ticket' , component:TicketComponent, canActivate : [AuthGuard]},
+  {path:'detailticket' , component:DetailticketComponent, canActivate : [AuthGuard]},
+  {path:'smsrecu' , component:SmsRecuComponent, canActivate : [AuthGuard]},
+  {path:'drive' , component:UploadFilesComponent, canActivate : [AuthGuard]},
+  {path:'setting' , component:SettingComponent, canActivate : [AuthGuard]},
+
+  
+  
+  
   
 
  /* { path:'loginsuccess' , component:LoginsuccessComponent, canActivate : [AuthGuard], canActivateChild : [AuthGuard],

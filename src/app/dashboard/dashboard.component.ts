@@ -19,6 +19,22 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+    /*(function(d, m){
+      var kommunicateSettings = {"appId":"38bed47d92a2bf6b3f8035ff21fbd702f","popupWidget":true,"automaticChatOpenOnNavigation":true};
+      var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+      s.src = "https://api.kommunicate.io/v2/kommunicate.app";
+      var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+      (window as any).kommunicate = m; m._globals = kommunicateSettings;
+    })(document, (window as any).kommunicate || {});*/
+    (function(d, m){
+      var kommunicateSettings = 
+          {"appId":"e1eb8ace20142fa669459a3f5bf5603","popupWidget":true,"automaticChatOpenOnNavigation":true};
+      var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+      s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+      var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+      (window as any).kommunicate = m; m._globals = kommunicateSettings;
+  })(document, (window as any).kommunicate || {});
+    
     this.userName= this.tokenStorage.getUser().userName;
     this.id= this.tokenStorage.getUser().id;
 

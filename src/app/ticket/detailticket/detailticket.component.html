@@ -1,0 +1,72 @@
+<app-dashboard></app-dashboard>
+<section id="main-content" >
+    <section class="wrapper">
+      <!--overview start-->
+      <div class="row">
+        <div class="col-lg-9">
+          <h3 class="page-header"><i class="fa fa-table"></i>Support ticket</h3>
+        </div>
+  
+        
+          
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/loginsuccess">Home</a></li>
+            <li><i class="fa fa-th-list"></i><a href="/ticket">All support tickets</a></li>
+            <li><i class="fa fa-th-list"></i>Comments</li>
+          </ol>
+        </div>
+      </div>
+  <br>
+
+<form  #form="ngForm" (ngSubmit)="onSubmit()" name="ticket">
+    <p class="text-right"><b>{{creator}}</b> <span> on {{created_at}}</span></p>
+    <fieldset  class="border p-2">
+        <legend class="w-auto"><h1 class="text-warning">{{subject}}</h1></legend>
+        <h3>{{content}}</h3>
+        <br>
+
+        <div class="card">
+          <ul
+            class="list-group list-group-flush"
+            *ngFor="let com of service.listcoment"
+          >
+            <li class="list-group-item">
+              
+
+                <div class="row">
+                  <div class="col-lg-11">
+                    <h3 class="text-info">{{com.user}}</h3>
+                    <h4>{{com.comment}}</h4>
+                  </div>
+                  <div class="col-lg-1">
+                    <small class="text-secondary"> {{com.creationDate}}  </small>
+                  </div>
+                </div>
+              
+           </li>
+          </ul>
+        </div>
+<br>
+        <div class="form-group">
+          <label class = "text-success"><b>{{profil}}</b></label>
+          <div >
+            <textarea class="form-control" id="commentaire" name="commentaire" style="width:700px; height:100px;" placeholder="Write a comment..." 
+            [(ngModel)]="commentaire.comment" required #comment="ngModel"
+            [class.is-invalid]="comment.invalid && comment.touched" aria-describedby="inputGroup-sizing-sm" aria-label="comment" 
+           ></textarea>
+          </div>
+        </div>
+        <div class="text-center">
+            <button [disabled]="form.form.invalid" type="submit" class="btn btn-info">Send Comment</button>
+            <button  type="reset" class="btn btn-light">Cancel</button>
+        </div>
+
+
+
+    </fieldset>
+    
+        
+</form>

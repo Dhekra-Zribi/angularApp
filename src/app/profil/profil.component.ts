@@ -59,11 +59,11 @@ export class ProfilComponent implements OnInit {
   }
 
   updateProfile(){
-    //this.userService.putProfileUser(this.id, users);
-    this.userService.updateUser(this.id, this.user)
-      .subscribe(data => console.log(data), error => console.log(error));
-      window.location.reload();
+      this.service.idd = this.id;
+      this.service.userr = this.user;
+      this.open();
   }
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(Pwd, {

@@ -32,6 +32,13 @@ import { CompagneComponent } from './compagne/compagne.component';
 import { PwdComponent } from './profil/pwd/pwd.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { TicketComponent } from './ticket/ticket.component';
+import { CreateticketComponent } from './ticket/createticket/createticket.component';
+import { DetailticketComponent } from './ticket/detailticket/detailticket.component';
+import { SmsRecuComponent } from './sms-recu/sms-recu.component';
+import { UploadFilesComponent } from './upload-files/upload-files.component';
+import { SettingComponent } from './setting/setting.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +57,13 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     UserlistComponent,
     CompagneComponent,
     PwdComponent,
+    TicketComponent,
+    CreateticketComponent,
+    DetailticketComponent,
+    SmsRecuComponent,
+    UploadFilesComponent,
+    SettingComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,

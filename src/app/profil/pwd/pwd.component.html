@@ -1,9 +1,10 @@
-<form> 
+<form [formGroup]="form" (ngSubmit)="verifPwd()"> 
     <button type="button" class="close btn btn-info float-right" [mat-dialog-close]><i class="icon_close"></i></button>
     <br>
     <div class="form-group">
         <div class="col-lg-6">
-          <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+          <input type="password" class="form-control" id="password"  placeholder="Enter password"
+           formControlName="password">
         </div>
         <div class="col-lg-2">
             <button type="submit" class="btn btn-info">Submit</button>

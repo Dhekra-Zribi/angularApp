@@ -1,4 +1,12 @@
 <app-dashboard></app-dashboard>
+<section id="main-content" *ngIf="!authService.isAdmin()">
+  <section class="wrapper">
+    <br><br><br>
+    <div  class="alert alert-info" >
+      <h1>You haven't access to this page!</h1>
+  </div>
+  </section>
+</section>
 <section id="main-content" *ngIf="authService.isAdmin()">
   <section class="wrapper">
     <div class="row">

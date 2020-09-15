@@ -1,0 +1,66 @@
+<app-dashboard></app-dashboard>
+<section id="main-content" >
+    <section class="wrapper">
+      <!--overview start-->
+      <div class="row">
+        <div class="col-lg-9">
+          <h3 class="page-header"><i class="fa fa-table"></i>Support ticket</h3>
+        </div>
+  
+        <div class="col-lg-3">
+          <form class="navbar-form">
+            <input class="form-control" type="text" name="search" placeholder="Search" [(ngModel)]="searchText" autocomplete="off" >
+          </form>
+        </div>
+          
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/loginsuccess">Home</a></li>
+            <li><i class="fa fa-th-list"></i>All support tickets</li>
+          </ol>
+        </div>
+      </div>
+  
+  
+  <br>
+  
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-striped table-advance table-hover">
+        <thead  class="thead-light">
+          <th>Creator</th>
+        <th>Subject</th>
+        <th>Content</th>
+        <th>Priority</th>
+        <th>Created at</th>
+        <th>Updated at</th>
+        <th>Completed at</th>
+        <!--<th> <i class="icon_cogs"></i>Action</th>-->
+        <th *ngIf="!authService.isAdmin()" >  <a  class="btn btn-lg btn-success text-white" (click)="AddData(null,1)">
+          <i ></i> New</a>
+        </th>
+        <th  *ngIf="authService.isAdmin()"> <i class="icon_cogs"></i>Action</th>
+        </thead>
+        <tr *ngFor="let ticket of service.list | filter:searchText | paginate: { itemsPerPage: 8, currentPage: p}">
+          <td (click)="populateForm(ticket)">{{ticket.creator}}</td>
+          <td (click)="populateForm(ticket)"><b>{{ticket.subject}}</b></td>
+          <td (click)="populateForm(ticket)">{{ticket.content}}</td>
+          <td (click)="populateForm(ticket)">{{ticket.priorities[0].name}}</td>
+          <td (click)="populateForm(ticket)">{{ticket.created_at}}</td>
+          <td (click)="populateForm(ticket)">{{ticket.updated_at}}</td>
+          <td (click)="populateForm(ticket)">{{ticket.completed_at}}</td>
+          <td>
+            <button *ngIf="!authService.isAdmin()" (click)="update(ticket)" class="btn btn-warning"><i class="fa fa-pencil fa-lg"></i></button>
+            <label *ngIf="!authService.isAdmin()">|</label>
+            <button (click)="onDelete(ticket.id)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+            <label>|</label>
+            <button  class="btn btn-info" (click)="completed(ticket.id,ticket); clicked = false;" [disabled]="clicked"><i class="fa fa-check" aria-hidden="true"></i></button>
+          </td>
+        </tr>
+      </table>
+      <div class="float-right">
+        <pagination-controls (pageChange)="p =$event"></pagination-controls>
+      </div>
+    </div>

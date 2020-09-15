@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   returnUrl: string; 
 
 
-
   public form: any = {};
   
   isLoggedIn = false;
@@ -65,6 +64,9 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.errorMessage = err.error.message;
+        if(this.errorMessage == "Error: Unauthorized"){
+          this.errorMessage ="The password you've entered is incorrect!";
+        }
         console.log(this.errorMessage);
         console.log(err.error.propertyName, err.error );
         this.isLoginFailed = true;

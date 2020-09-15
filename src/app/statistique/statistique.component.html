@@ -3,13 +3,29 @@
       
     
       <div class="col-lg-3 col-md-offset-1">
-        <div class="info-box blue-bg">
+        <div class="info-box yellow-bg">
           <i class="fa fa-cloud-upload"></i>
           <div class="count">{{nb}} </div>
           <div class="title">Message send</div>
         </div>
         <!--/.info-box-->
       </div>
+
+      <div class="col-lg-3 ">
+      <div class="info-box green-bg">
+        <i class="fa fa-cloud-download"></i>
+        <div class="count">{{nbb}} </div>
+        <div class="title">Message received</div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 ">
+      <div class="info-box blue-bg">
+        <i class="fa fa-cloud"></i>
+        <div class="count">{{nbbb}} </div>
+        <div class="title">Messages</div>
+      </div>
+    </div>
 
     </div>
     <!--<div class="row">
@@ -58,6 +74,20 @@
         [title]="chartOptions.title"
       ></apx-chart>
     </div>
+
+    <div>
+      <apx-chart
+        [series]="chartOptions2.series"
+        [chart]="chartOptions2.chart"
+        [xaxis]="chartOptions2.xaxis"
+        [title]="chartOptions2.title"
+      ></apx-chart>
+    </div>
+
+
+    
+    
+
 
    <!--<div class="row">
       <div class="col-lg-10">

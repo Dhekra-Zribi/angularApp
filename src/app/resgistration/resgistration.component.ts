@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '../user';
 import { RegistrationService } from '../registration.service';
 import { AuthService } from '../_services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-resgistration',
@@ -53,6 +54,13 @@ export class ResgistrationComponent implements OnInit {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Registration completed',
+          showConfirmButton: false,
+          timer: 1500
+        })
         this._route.navigate(['/login']);
       },
       err => {

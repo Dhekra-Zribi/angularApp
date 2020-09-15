@@ -20,6 +20,10 @@ export class UserService {
   dataFromService;
   l: any={}
 
+  idd;
+  userr;
+
+  isOk=false;
   constructor(private http : HttpClient) { }
 
   public registerUserFromRemote(user : User):Observable<any> {
@@ -40,16 +44,21 @@ export class UserService {
 
   updateUser(id: number, user): Observable<Object>{
     //return this.http.put<any>("http://localhost:8080/users?id="+id, user);
-    return this.http.put<any>("http://localhost:8080/api/auth/update?id="+id, user);
+    return this.http.put<any>("http://localhost:8080/api/auth/profile?id="+id, user);
    }
 
-  putProfileUser(id: number, user): Observable<Object>{
-    return this.http.put<any>("http://localhost:8080/api/auth/profile?id="+id, user);
+  upd(id: number, user): Observable<Object>{
+    return this.http.put<any>("http://localhost:8080/api/auth/update?id="+id, user);
   }
 
 
    getUser(id: number): Observable<any> {
     return this.http.get("http://localhost:8080/api/auth/user?id="+id);
+  }
+
+  verifPwd(password : string, id:number){
+    return this.http.get("http://localhost:8080/api/auth/pwd?password="+password+"&id=" +id);
+    
   }
 
   
